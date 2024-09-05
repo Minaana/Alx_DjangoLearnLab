@@ -15,8 +15,7 @@ def sample_queries():
 
     # Retrieve the librarian for a library
     library_name = "Library Name"
-    library = Library.objects.get(name=library_name)
-    librarian = library.librarian  # Direct access due to OneToOneField
+    librarian = Librarian.objects.get(library__name=library_name)  # Using the library field of Librarian
     print(f"Librarian of {library_name}: {librarian.name}")
 
 if __name__ == "__main__":
