@@ -1,7 +1,7 @@
 # relationship_app/views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login  # Ensure this line is present exactly as shown
 from django.contrib.auth.views import LoginView, LogoutView
 
 def register(request):
@@ -10,7 +10,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             # Automatically log in the user after registration
-            login(request, user)
+            login(request, user)  # Using the login function here
             return redirect('home')  # Redirect to a home page or any desired page after registration
     else:
         form = UserCreationForm()
