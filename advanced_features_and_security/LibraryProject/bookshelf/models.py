@@ -60,3 +60,33 @@ from advanced_features_and_security.models import CustomUser
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     bio = models.TextField()
+
+# bookshelf/models.py
+from django.db import models
+from django.contrib.auth.models import User
+
+class Book(models.Model):
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=255)
+
+    class Meta:
+        permissions = [
+            ("can_view", "Can view book"),
+            ("can_create", "Can create book"),
+            ("can_edit", "Can edit book"),
+            ("can_delete", "Can delete book"),
+        ]
+
+
+# bookshelf/models.py
+class Book(models.Model):
+    # ...fields...
+
+    class Meta:
+        # Custom permissions for the Book model
+        permissions = [
+            ("can_view", "Can view book"),
+            ("can_create", "Can create book"),
+            ("can_edit", "Can edit book"),
+            ("can_delete", "Can delete book"),
+        ]
