@@ -154,3 +154,19 @@ SESSION_COOKIE_SECURE = True
 SECURE_HSTS_SECONDS = 31536000  # 1 year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
+
+
+
+# LibraryProject/LibraryProject/settings.py
+
+MIDDLEWARE = [
+    # Other middleware classes...
+    'csp.middleware.CSPMiddleware',
+]
+
+# Content Security Policy settings
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", 'https://fonts.googleapis.com')
+CSP_IMG_SRC = ("'self'", 'data:')
+CSP_FONT_SRC = ("'self'", 'https://fonts.gstatic.com')
