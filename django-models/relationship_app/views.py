@@ -1,7 +1,8 @@
 # relationship_app/views.py
 from django.shortcuts import render
-from django.views.generic.detail import DetailView  # Import DetailView for class-based views
-from .models import Book, Library  # Ensure this exact line is present
+from django.views.generic.detail import DetailView  # Ensure this import is included
+from .models import Library  # Ensure this line is present exactly as shown
+from .models import Book  # You can also import Book separately if needed
 
 def list_books(request):
     # Query all books from the database
