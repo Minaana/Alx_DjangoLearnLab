@@ -173,6 +173,11 @@ CSP_FONT_SRC = ("'self'", 'https://fonts.gstatic.com')
 
 
 
+# settings.py
+
+# Proxy SSL header configuration for Django when using HTTPS behind a proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Redirect all HTTP requests to HTTPS
 SECURE_SSL_REDIRECT = True
