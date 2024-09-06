@@ -50,3 +50,17 @@ def is_librarian(user):
 @user_passes_test(is_librarian)
 def librarian_view(request):
     return render(request, 'relationship_app/librarian_view.html')
+
+
+# relationship_app/views.py
+from django.shortcuts import render
+from django.contrib.auth.decorators import user_passes_test
+
+# Check if user is a member
+def is_member(user):
+    return user.userprofile.role == 'Member'
+
+# Member view
+@user_passes_test(is_member)
+def member_view(request):
+    return render(request, 'relationship_app/member_view.html')
