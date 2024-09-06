@@ -1,20 +1,23 @@
 # relationship_app/views.py
-from django.shortcuts import render
-from django.views.generic.detail import DetailView  # Ensure this import is included
-from .models import Library  # Ensure this line is present exactly as shown
-from .models import Book  # You can also import Book separately if needed
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LoginView, LogoutView
 
-def list_books(request):
-    # Query all books from the database
-    books = Book.objects.all()
-    # Render the list_books.html template with the list of books
-    return render(request, 'relationship_app/list_books.html', {'books': books})
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Automatically log in the user after registration
+            login(request, user)
+            return redirect('home')  # Redirect to a home page or any desired page after registration
+    else:
+        form = UserCreationForm()
+    return render(request, 'relationship_app/register.html', {'form': form})
 
-class LibraryDetailView(DetailView):
-    model = Library
-    template_name = 'relationship_app/library_detail.html'
-    context_object_name = 'library'
+class CustomLoginView(LoginView):
+    template_name = 'relationship_app/login.html'
 
-    def get_queryset(self):
-        # Override get_queryset to provide all libraries
-        return Library.objects.all()
+class CustomLogoutView(LogoutView):
+    template_name = 'relationship_app/logout.html'
