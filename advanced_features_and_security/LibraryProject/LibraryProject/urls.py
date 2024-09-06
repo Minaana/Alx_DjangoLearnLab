@@ -30,3 +30,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('relationship/', include('relationship_app.urls')),  # Include relationship_app URLs
 ]
+
+
+# LibraryProject/bookshelf/urls.py
+from django.urls import path
+from .views import book_list
+
+urlpatterns = [
+    path('books/', book_list, name='book_list'),
+]

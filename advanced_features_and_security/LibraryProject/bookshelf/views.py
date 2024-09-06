@@ -19,10 +19,12 @@ def create_book(request):
 
 
 
-# bookshelf/views.py
-from django.http import HttpResponseForbidden
+# LibraryProject/bookshelf/views.py
+from django.shortcuts import render
+from django.contrib.auth.decorators import permission_required
+from .models import Book
 
-def some_view(request):
-    if not request.user.has_perm('bookshelf.can_view'):
-        return HttpResponseForbidden()
-    # Your view logic here
+@permission_required('bookshelf.can_view', raise_exception=True)
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, 'book_list.html', {'books': books})
