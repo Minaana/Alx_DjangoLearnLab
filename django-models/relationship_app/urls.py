@@ -19,11 +19,14 @@ urlpatterns = [
     path('register/', register, name='register'),
 ]
 
-# project's urls.py (e.g., myproject/urls.py)
-from django.contrib import admin
-from django.urls import path, include
+# relationship_app/urls.py
+from django.urls import path
+from . import views
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('auth/', include('relationship_app.urls')),  # Include authentication URLs
+    path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),  # Correct usage of LoginView with template_name
+    path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name='logout'),  # Correct usage of LogoutView with template_name
+    path('register/', views.register, name='register'),  # Directly linking to views.register
 ]
+
