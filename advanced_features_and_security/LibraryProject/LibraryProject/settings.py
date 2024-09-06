@@ -134,3 +134,23 @@ INSTALLED_APPS = [
 
 # LibraryProject/LibraryProject/settings.py
 AUTH_USER_MODEL = 'bookshelf.CustomUser'
+
+
+# LibraryProject/LibraryProject/settings.py
+
+# Set DEBUG to False in production
+DEBUG = False
+
+# Secure browser-side settings
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Ensure cookies are sent over HTTPS only
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# Optionally, set SECURE_HSTS_SECONDS to enable HTTP Strict Transport Security
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True

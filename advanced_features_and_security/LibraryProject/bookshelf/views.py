@@ -28,3 +28,16 @@ from .models import Book
 def book_list(request):
     books = Book.objects.all()
     return render(request, 'book_list.html', {'books': books})
+
+
+# LibraryProject/bookshelf/views.py
+from django.shortcuts import render
+from .models import Book
+
+def search_books(request):
+    query = request.GET.get('q')
+    if query:
+        books = Book.objects.filter(title__icontains=query)
+    else:
+        books = Book.objects.all()
+    return render(request, 'book_list.html', {'books': books})
