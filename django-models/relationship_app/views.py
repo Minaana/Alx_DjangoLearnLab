@@ -1,7 +1,7 @@
 # relationship_app/views.py
 from django.shortcuts import render, redirect
+from django.contrib.auth import login  # Ensure this line is present exactly as shown
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login  # Ensure this line is present exactly as shown
 from django.contrib.auth.views import LoginView, LogoutView
 
 def register(request):
