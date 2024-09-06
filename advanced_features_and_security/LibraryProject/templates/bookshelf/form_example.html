@@ -1,6 +1,15 @@
 <!-- LibraryProject/templates/bookshelf/form_example.html -->
-<form method="post" action="{% url 'some_view' %}">
-    {% csrf_token %}
-    <!-- Form fields here -->
-    <input type="submit" value="Submit">
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example Form</title>
+</head>
+<body>
+    <h1>Submit Book Information</h1>
+    <form method="post" action="{% url 'example_view' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

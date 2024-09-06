@@ -41,3 +41,20 @@ def search_books(request):
     else:
         books = Book.objects.all()
     return render(request, 'book_list.html', {'books': books})
+
+
+# LibraryProject/bookshelf/views.py
+from django.shortcuts import render, redirect
+from .forms import ExampleForm
+
+def example_view(request):
+    if request.method == 'POST':
+        form = ExampleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success_url')  # Redirect to a success page
+    else:
+        form = ExampleForm()
+    
+    return render(request, 'form_example.html', {'form': form})
+
