@@ -132,5 +132,5 @@ INSTALLED_APPS = [
     'relationship_app',
 ]
 
-# advanced_features_and_security/settings.py
-AUTH_USER_MODEL = 'advanced_features_and_security.CustomUser'
+# LibraryProject/LibraryProject/settings.py
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
