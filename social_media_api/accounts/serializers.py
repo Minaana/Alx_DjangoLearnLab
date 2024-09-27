@@ -28,3 +28,28 @@ class UserSerializer(serializers.ModelSerializer):
         
         return user
 
+from rest_framework import serializers
+from django.contrib.auth import get_user_model
+
+# Get the custom or default user model
+User = get_user_model()
+
+class UserSerializer(serializers.ModelSerializer):
+    # Use CharField for password and ensure it's write-only
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'password', 'bio', 'profile_picture']
+
+    # Override the create method to use get_user_model().objects.create_user()
+    def create(self, validated_data):
+        # Create a new user using create_user and ensure the password is hashed
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            password=validated_data['password'],  # Hash the password
+            bio=validated_data.get('bio', ''),  # Optional field
+            profile_picture=validated_data.get('profile_picture', None)  # Optional field
+        )
+        return user
+
