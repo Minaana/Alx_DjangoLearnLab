@@ -9,3 +9,15 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+from django.db import models
+from django.contrib.auth.models import User
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Link to User model
+    bio = models.TextField(blank=True)  # Optional bio field
+    profile_picture = models.ImageField(upload_to='profile_pics', blank=True)  # Optional profile picture field
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
