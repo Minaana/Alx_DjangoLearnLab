@@ -1,3 +1,20 @@
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 from django.shortcuts import render
 
-# Create your views here.
+class RegisterView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'registration/register.html'
+    success_url = reverse_lazy('login')
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+
+@login_required
+def profile_view(request):
+    if request.method == 'POST':
+        # Handle profile update logic here
+        pass
+    return render(request, 'registration/profile.html')
