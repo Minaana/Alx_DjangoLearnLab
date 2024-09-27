@@ -10,3 +10,9 @@
     {% endif %}
 </article>
 {% endblock %}
+
+
+
+{% if user == post.author %}
+    <a href="{% url 'post-update' post.pk %}">Edit</a>
+{% endif %}
